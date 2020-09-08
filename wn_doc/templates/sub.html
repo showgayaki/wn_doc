@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block title %} | {{ active_page }}{% endblock %}
+{% block head %}
+{% endblock%}
+
+{% block contents %}
+    {% for nav, url in global_nav.items %}
+    {% if nav == active_page %}
+    <div class="my-3 p-3 bg-white rounded box-shadow">
+        <h2 class="border-bottom border-gray pb-2 mb-0">{{ nav }}</h2>
+        {% for name, val in contents.items %}
+        {% include 'contents.html' %}
+        {% endfor %}
+    </div>
+    {% endif %}
+    {% endfor %}
+{% endblock %}
+
+{% block footer %}
+{% endblock %}

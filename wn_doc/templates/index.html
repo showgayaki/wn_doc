@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load lookup %}
+{% block title %} | {{ active_page }}{% endblock %}
+{% block head %}
+{% endblock%}
+
+{% block header %}
+    <header class="">
+        <div class="jumbotron p-3">
+            <h1>Welcome!</h1>
+            <div class="header-body d-sm-flex">
+                <img class="col-sm-5 p-0" src="{% static 'img/header.jpg' %}" alt="watashi">
+                <p class="lead col-sm-7">This example is a quick exercise to illustrate how the top-aligned navbar works. As you scroll, this navbar remains in its original position and moves with the rest of the page.</p>
+            </div>
+        </div>
+    </header>
+{% endblock %}
+{% block contents %}
+        {% for nav, url in global_nav.items %}
+        {% if nav != 'Home' %}
+        <div class="my-3 p-3 bg-white rounded box-shadow">
+            <h5 class="border-bottom border-gray pb-2 mb-0">{{ nav }}</h5>
+            {% with contents|lookup:nav as content %}
+            {% for name, val in content.items %}
+                {% if forloop.counter0 < 5 %}
+                {% include 'contents.html' %}
+                {% endif %}
+            {% endfor %}
+            {% endwith %}
+            <p class="d-block text-right mt-3">
+                <a href="{{ url }}">More</a>
+            </p>
+        </div>
+        {% endif %}
+        {% endfor %}
+{% endblock %}
+
+{% block footer %}
+{% endblock %}

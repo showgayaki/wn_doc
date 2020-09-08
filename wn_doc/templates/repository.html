@@ -1,0 +1,127 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} | {{ active_page }}{% endblock %}
+{% block head %}
+    <style>
+        .container{
+            max-width: 1200px;
+            height: 100%;
+        }
+    </style>
+    <script type="text/javascript" src="{% static 'js/prettify.js' %}"></script>
+{% endblock %}
+{% block contents %}
+<div class="card my-3">
+    <h2 class="card-header">{{ directory }}</h2>
+    <div class="card-body d-sm-flex">
+        <div class="sidebar-nav col-md-4 col-lg-3 my-3 rounded box-shadow">
+            <ul id="tree" class="dir-menu">
+                {% for tree in trees %}
+                <li>
+                    {% if tree.type == 'tree' %}
+                    <a id="{{ tree.name }}" class="tree text-light" href="{{ tree.name }}">
+                        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-folder-fill mr-1 directory" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" d="M9.828 3h3.982a2 2 0 0 1 1.992 2.181l-.637 7A2 2 0 0 1 13.174 14H2.826a2 2 0 0 1-1.991-1.819l-.637-7a1.99 1.99 0 0 1 .342-1.31L.5 3a2 2 0 0 1 2-2h3.672a2 2 0 0 1 1.414.586l.828.828A2 2 0 0 0 9.828 3zm-8.322.12C1.72 3.042 1.95 3 2.19 3h5.396l-.707-.707A1 1 0 0 0 6.172 2H2.5a1 1 0 0 0-1 .981l.006.139z"></path>
+                        </svg>
+                        {{ tree.name }}
+                    </a>
+                    {% else %}
+                    <a id="{{ tree.name }}" class="blob btn text-left text-light">
+                        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-file-earmark-fill  mr-1" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" d="M4 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V4.707A1 1 0 0 0 13.707 4L10 .293A1 1 0 0 0 9.293 0H4zm5.5 1.5v2a1 1 0 0 0 1 1h2l-3-3z"/>
+                        </svg>
+                        {{ tree.name }}
+                    </a>
+                    {% endif %}
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="col-md-8 col-lg-9 my-3 bg-white rounded box-shadow">
+            <div id="code-area" class="code-area">
+            {% for title, val in codes.items %}
+            {% if title == 'README.md' %}
+                <h4 class="file-name p-2 text-light">{{ title }}</h4>
+                <script src="{{ val.code }}"></script>
+            {% endif %}
+            {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block footer %}
+<script type="text/javascript" src="{% static 'js/marked.min.js' %}"></script>
+<script>
+    $(function(){
+        const codes = {{ codes|safe }};
+        const codeTitleTag = '<h4 class="file-name p-2 text-light">';
+
+        if(codes['README.md']){
+            // コンテンツ部分を取得
+            const html = $('.prettyprint').html();
+            // いったん空にしてから整形したコンテンツを追加
+            $('#code-area').empty();
+            $('#code-area').append(codeTitleTag + 'README.md</h4>');
+            
+            const markeUp = marked(shapeHtml(html));
+            $('#code-area').append(markeUp);
+        }
+
+        // ファイルクリック時
+        $('a.blob').on('click', function(){
+            const thisId = $(this).attr('id');
+            $('#code-area').empty();
+            $('#code-area').append(codeTitleTag + thisId + '</h4>');
+
+            getWritten(codes[thisId]['code'], function(html){
+                if(thisId === 'README.md'){
+                    html = marked(shapeHtml(html));
+                }
+                $('#code-area').append(html);
+                $('#code-area .prettyprint').addClass('linenums');
+            });
+        });
+    });
+
+    function shapeHtml(html){
+        // いらないタグ削除
+        html = html.replace(/<br>/g, '\n').replace(/<("[^"]*"|'[^']*'|[^'">])*>/g, '');
+        // おしりに残ったprettyPrint();と、前後の空白削除
+        html = html.replace('prettyPrint();', '').trim();
+        // コードエリアの空白コードを、半角スペースに変更
+        html = html.replace(/&nbsp; /g, ' ');
+        // 空白コードを改行に変更
+        html = html.replace(/&nbsp;/g, '<br>');
+        return html;
+    }
+
+    function getWritten(fileName, callback) {
+        const $iframe = $('<iframe hidden\/>');
+        // iframe が DOM 上に存在しないとうまくいかないので一時的に出力する
+        $iframe.appendTo('#code-area');
+        const frameDocument = $iframe[0].contentWindow.document;
+        const scriptTag = '<script src=\"' + fileName + '\"><\/script>';
+        frameDocument.open();
+        // frame 内での window.setResult に結果受信用関数を作成する
+        $iframe[0].contentWindow.setResult = function(html) {
+            // 親フレーム上から用済みの iframe を除去する
+            $iframe.remove();
+            // 取得した文字列には scriptTag が含まれているので削除してコールバックに渡す
+            callback(html.replace(scriptTag, ''));
+        };
+        frameDocument.write(
+            '<div id=\"area-to-write\">' +
+            // div タグ内に scriptTag を貼る
+            scriptTag +
+            '<\/div>' +
+            '<script>' +
+            // div タグ内に出力された文字列を setResult() に渡す
+            'setResult(document.querySelector(\"#area-to-write\").innerHTML);' +
+            '<\/script>'
+        );
+        frameDocument.close();
+    }
+</script>
+{% endblock %}

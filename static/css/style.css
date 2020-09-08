@@ -1,0 +1,85 @@
+.container{
+    max-width: 800px;
+}
+nav{
+    background-color: #11303d;
+}
+/* Repository: sidebar navigation */
+.dir-menu {
+    background: #11303d;
+}
+.sidebar-nav ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+.sidebar-nav .dir-menu {
+    display: flex;
+    flex-direction: column;
+}
+.sidebar-nav .dir-menu>li {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+.sidebar-nav .dir-menu a {
+    position: relative;
+    display: block;
+    padding: 13px 15px;
+    transition: all .3s ease-out;
+    text-decoration: none;
+    color: #adb5bd;
+    outline-width: 0;
+}
+.sidebar-nav .dir-menu ul a {
+    padding: 10px 15px 10px 30px;
+}
+.sidebar-nav .dir-menu ul ul a {
+    padding: 10px 15px 10px 45px;
+}
+.sidebar-nav .dir-menu a:hover,
+.sidebar-nav .dir-menu a:focus,
+.sidebar-nav .dir-menu a:active {
+    text-decoration: none;
+    color: #f8f9fa;
+    background: #0b7285;
+}
+.directory{
+    fill: #79b8ff;
+}
+.file-name{
+    color: #fff;
+    background-color: #11303d;
+}
+#code-area img{
+    max-width: 100%;
+}
+#code-area code{
+    padding: .2em .4em;
+    margin: 0;
+    color: #24292e;
+    background-color: rgba(27,31,35,.05);
+    border-radius: 6px;
+}
+#code-area pre {
+    padding: 16px;
+    overflow: auto;
+    font-size: 85%;
+    line-height: 1.45;
+    background-color: #f6f8fa;
+    border-radius: 6px;
+}
+#code-area pre code{
+    display: inline;
+    max-width: auto;
+    padding: 0;
+    margin: 0;
+    overflow: visible;
+    line-height: inherit;
+    word-wrap: normal;
+    background-color: initial;
+    border: 0;
+}
+.prettyprint ol.linenums > li {
+    list-style-type: decimal; 
+}
