@@ -1,6 +1,3 @@
-import requests
-
-
 def github_config():
     github_dict = {
         'api_url': 'https://api.github.com/graphql',
