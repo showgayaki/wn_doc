@@ -4,6 +4,9 @@
 nav{
     background-color: #11303d;
 }
+.fa-github{
+    color: #000;
+}
 /* Repository: sidebar navigation */
 .dir-menu {
     background: #11303d;
@@ -51,6 +54,7 @@ nav{
     color: #fff;
     background-color: #11303d;
 }
+/* Repository: code area */
 #code-area img{
     max-width: 100%;
 }
@@ -81,5 +85,5 @@ nav{
     border: 0;
 }
 .prettyprint ol.linenums > li {
-    list-style-type: decimal; 
+    list-style-type: decimal;
 }
