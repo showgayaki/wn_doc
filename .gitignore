@@ -4,5 +4,6 @@ __pycache__
 local_settings.py
 db.sqlite3
 wn_doc/static/
+static/admin/
 header.jpg
 env.yaml

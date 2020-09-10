@@ -8,17 +8,17 @@
     <meta name="author" content="">
     <meta name=”robots” content=”noindex” />
     {% load static %}
-    <link rel="icon" href="{% static 'img/favicon.ico' %}">
+    <link rel="icon" href="{% static 'wn_doc/img/favicon.ico' %}">
 
     <title>Watashi no Documents{% block title %}{% endblock %}</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
-    <link href="{% static 'css/navbar-top-fixed.css' %}" rel="stylesheet">
-    <link href="{% static 'css/offcanvas.css' %}" rel="stylesheet">
+    <link href="{% static 'wn_doc/css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'wn_doc/css/navbar-top-fixed.css' %}" rel="stylesheet">
+    <link href="{% static 'wn_doc/css/offcanvas.css' %}" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+    <link href="{% static 'wn_doc/css/style.css' %}" rel="stylesheet">
     {% block head %}
     {% endblock %}
 </head>
@@ -54,10 +54,10 @@
         {% block contents %}
         {% endblock %}
     </main>
-    <script src="{% static 'js/jquery-3.5.1.slim.min.js'%}"></script>
-    <script src="{% static 'js/popper.min.js' %}"></script>
-    <script src="{% static 'js/bootstrap.min.js' %}"></script>
-    <script src="{% static 'js/offcanvas.js' %}"></script>
+    <script src="{% static 'wn_doc/js/jquery-3.5.1.slim.min.js'%}"></script>
+    <script src="{% static 'wn_doc/js/popper.min.js' %}"></script>
+    <script src="{% static 'wn_doc/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'wn_doc/js/offcanvas.js' %}"></script>
     {% block footer %}
     {% endblock %}
 </body>
