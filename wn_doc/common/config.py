@@ -1,5 +1,4 @@
 import requests
-from bs4 import BeautifulSoup
 
 
 def github_config():
@@ -30,36 +29,31 @@ def view_contents(page='index'):
         },
         'Official': {
             'Python': {
-                'url': 'https://www.python.org/'
+                'url': 'https://www.python.org/',
+                'description': 'Pythonはパワフル・・・そして高速'
             },
             'Django': {
-                'url': 'https://www.djangoproject.com/'
+                'url': 'https://www.djangoproject.com/',
+                'description': 'The Web framework for perfectionists with deadlines | Django'
             },
             'Flask': {
-                'url': 'https://flask.palletsprojects.com/en/1.1.x/'
+                'url': 'https://flask.palletsprojects.com/en/1.1.x/',
+                'description': 'Welcome to Flask — Flask Documentation (1.1.x)'
             },
             'NumPy': {
-                'url': 'https://numpy.org/'
+                'url': 'https://numpy.org/',
+                'description': 'NumPy'
             },
             'pandas': {
-                'url': 'https://pandas.pydata.org/'
+                'url': 'https://pandas.pydata.org/',
+                'description': 'pandas - Python Data Analysis Library'
             },
             'matplotlib': {
-                'url': 'https://matplotlib.org/'
+                'url': 'https://matplotlib.org/',
+                'description': 'Matplotlib: Python plotting'
             },
         }
     }
-
-    for val in all_contents['Official'].values():
-        try:
-            res = requests.get(val['url'], timeout=(3, 6))
-            soup = BeautifulSoup(res.text, 'html.parser')
-            title = soup.find('title').get_text()
-        except Exception as e:
-            title = str(e)
-        else:
-            res.close()
-        val['description'] = title
 
     contents = all_contents[page.capitalize()] if page != 'index' else all_contents
     return contents
