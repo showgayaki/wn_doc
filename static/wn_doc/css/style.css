@@ -7,6 +7,11 @@ body{
 nav{
     background-color: #11303d;
 }
+header{
+    background: url("/static/wn_doc/img/header.jpg") center center no-repeat;
+    background-size: cover;
+    height: 300px;
+}
 /* Repository: sidebar navigation */
 .dir-menu {
     background: #11303d;
