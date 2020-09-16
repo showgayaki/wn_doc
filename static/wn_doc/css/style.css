@@ -96,3 +96,21 @@ span.row-num span{
     text-align: right;
     color: #6c757d;
 }
+pre span{
+    font-family: SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;
+}
+ .gist-it-gist .gist-file div.gist-data, .gister-gist .gist-file div.gist-data {
+    background-color: #fff;
+}
+.kwd, .kwd span{
+    color: #d73a49;
+}
+.typ, .typ span, span.lit, span.lit + span{
+    color: #e36209;
+}
+.com, .com span{
+    color: #6a737d;
+}
+span.str{
+    color: #000;
+}
