@@ -1,3 +1,4 @@
+@charset "UTF-8";
 body{
     padding-top: 56px;
 }
@@ -60,17 +61,14 @@ header{
     background-color: #11303d;
 }
 /* Repository: code area */
-#code-area img{
-    max-width: 100%;
-}
-#code-area code{
+.code-wrap code{
     padding: .2em .4em;
     margin: 0;
     color: #24292e;
     background-color: rgba(27,31,35,.05);
     border-radius: 6px;
 }
-#code-area pre {
+.code-wrap pre {
     padding: 16px;
     overflow: auto;
     font-size: 85%;
@@ -78,7 +76,7 @@ header{
     background-color: #f6f8fa;
     border-radius: 6px;
 }
-#code-area pre code{
+.code-wrap pre code{
     display: inline;
     max-width: auto;
     padding: 0;
@@ -89,6 +87,12 @@ header{
     background-color: initial;
     border: 0;
 }
-.prettyprint ol.linenums > li {
-    list-style-type: decimal;
+.code-area img{
+    max-width: 100%;
+}
+span.row-num span{
+    display: inline-block;
+    width: 40px;
+    text-align: right;
+    color: #6c757d;
 }

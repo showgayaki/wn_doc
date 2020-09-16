@@ -37,8 +37,8 @@
                 {% endfor %}
             </ul>
         </div>
-        <div class="col-md-8 col-lg-9 my-3 p-0 bg-white rounded box-shadow">
-            <div id="code-area" class="code-area">
+        <div id="code-wrap" class="col-md-8 col-lg-9 my-3 p-0 bg-white rounded box-shadow">
+            <div class="code-wrap">
             {% for title, val in codes.items %}
             {% if title == 'README.md' %}
                 <h4 class="file-name p-2 text-light">{{ title }}</h4>
@@ -56,51 +56,65 @@
 <script>
     $(function(){
         const codes = {{ codes|safe }};
-        const codeTitleTag = '<h4 class="file-name p-2 text-light">';
+        const codeTitleTag = '<h4 class="file-name p-2 mb-0 text-light">';
+        const codeArea = '<div id="code-area" class="code-area"></div>';
 
         if(codes['README.md']){
             // コンテンツ部分を取得
             const html = $('.prettyprint').html();
             // いったん空にしてから整形したコンテンツを追加
-            $('#code-area').empty();
-            $('#code-area').append(codeTitleTag + 'README.md</h4>');
-            
-            const markUp = marked(shapeHtml(html));
+            $('#code-wrap').empty();
+            $('#code-wrap').append(codeTitleTag + 'README.md</h4>');
+            $('#code-wrap').append(codeArea);
+
+            const markUp = marked(shapeHtml(html, true));
             $('#code-area').append(markUp);
         }
 
         // ファイルクリック時
         $('a.blob').on('click', function(){
             const thisId = $(this).attr('id');
-            $('#code-area').empty();
-            $('#code-area').append(codeTitleTag + thisId + '</h4>');
+            $('#code-wrap').empty();
+            $('#code-wrap').append(codeTitleTag + thisId + '</h4>');
+            $('#code-wrap').append(codeArea);
 
             getWritten(codes[thisId]['code'], function(html){
-                if(thisId === 'README.md'){
-                    html = marked(shapeHtml(html));
-                }
+                html = (thisId === 'README.md') ? marked(shapeHtml(html, true)) : shapeHtml(html, false);
                 $('#code-area').append(html);
-                $('#code-area .prettyprint').addClass('linenums');
             });
         });
     });
 
-    function shapeHtml(html){
+    function shapeHtml(html, isReadMe){
         // いらないタグ削除
-        html = html.replace(/<br>/g, '\n').replace(/<("[^"]*"|'[^']*'|[^'">])*>/g, '');
+        shapedHtml = html.replace(/<br>/g, '\n').replace(/<("[^"]*"|'[^']*'|[^'">])*>/g, '');
         // おしりに残ったprettyPrint();と、前後の空白削除
-        html = html.replace('prettyPrint();', '').trim();
-        // コードエリアの空白コードを、半角スペースに変更
-        html = html.replace(/&nbsp; /g, ' ');
-        // 空白コードを改行に変更
-        html = html.replace(/&nbsp;/g, '<br>');
-        return html;
+        shapedHtml = shapedHtml.replace('prettyPrint();', '').trim();
+        if(isReadMe){
+            // コードエリアの空白コードを半角スペースに変更、空白コードを改行に変更
+            shapedHtml = shapedHtml.replace(/&nbsp; /g, ' ').replace(/&nbsp;/g, '<br>');
+        }else{
+            const rowSpan = '<span class="row-num pr-2">';
+            for(let i = 1; i < html.split('<br>').length + 1; i++){
+                if(i === 1){
+                    shapedHtml = html.replace(
+                        '<pre class="prettyprint">',
+                        '<pre class="prettyprint">' + rowSpan + i + '</span>'
+                    );
+                }else{
+                    shapedHtml = shapedHtml.replace(
+                        '<br>', '\n' + rowSpan + i + '</span>'
+                    );
+                }
+            }
+        }
+        return shapedHtml;
     }
 
     function getWritten(fileName, callback) {
         const $iframe = $('<iframe hidden\/>');
         // iframe が DOM 上に存在しないとうまくいかないので一時的に出力する
-        $iframe.appendTo('#code-area');
+        $iframe.appendTo('#code-wrap');
         const frameDocument = $iframe[0].contentWindow.document;
         const scriptTag = '<script src=\"' + fileName + '\"><\/script>';
         frameDocument.open();
