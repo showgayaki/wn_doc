@@ -23,7 +23,7 @@ class Github:
                                 url
                                 description
                                 createdAt
-                                languages(last:5){
+                                languages(last:6){
                                     nodes{
                                         name
                                         color
