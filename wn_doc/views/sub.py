@@ -15,6 +15,7 @@ def sub(request, page):
     if page == 'repositories':
         git = Github(github_config())
         contents = git.fetch_repositories()
+        contents.update(view_contents(page))
     else:
         contents = view_contents(page)
 

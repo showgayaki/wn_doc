@@ -1,3 +1,4 @@
+            {% if name != 'repos' %}
             <div class="media text-muted pt-3">
                 {% if nav == 'Repositories' %}
                 <i class="mt-1 mr-2 fa fa-github fa-lg text-dark"></i>
@@ -5,6 +6,7 @@
                 <img class="mt-1 mr-2 rounded" src="https://www.google.com/s2/favicons?domain={{ val.url }}" alt="{{ name }}">
                 {% endif %}
                 <div class="media-body pb-3 mb-0 lh-125 border-bottom border-gray">
+
                     <div class="mb-1 d-sm-flex justify-content-between flex-sm-wrap">
                         <strong class="h5 d-block text-gray-dark">
                             <a href="{{ val.url }}">{{ name }}</a>
@@ -28,3 +30,4 @@
                     {% endif %}
                 </div>
             </div>
+            {% endif %}

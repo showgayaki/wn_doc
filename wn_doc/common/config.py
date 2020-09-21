@@ -28,6 +28,11 @@ def view_contents(page='index'):
                 'description': '家計簿アプリデモ　Username：user1 または user2、Password：test'
             }
         },
+        'Repositories': {
+            'repos': {
+                'url': 'https://github.com/{}/?tab=repositories'.format(github_config()['user'])
+            }
+        },
         'Official': {
             'Python': {
                 'url': 'https://www.python.org/',

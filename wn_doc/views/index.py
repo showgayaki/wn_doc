@@ -8,7 +8,10 @@ def index(request):
     contents = view_contents()
 
     git = Github(github_config())
+    # repository一覧を単に追加するとreposから表示されるので、いったん退避してから代入
+    repos_dict = contents['Repositories'].copy()
     contents['Repositories'] = git.fetch_repositories()
+    contents['Repositories'].update(repos_dict)
 
     return render(
         request,
