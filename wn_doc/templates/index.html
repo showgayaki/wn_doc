@@ -20,7 +20,7 @@
             <div class="border-bottom border-gray d-flex justify-content-between">
                 <h4 class="pb-2 mb-0">{{ nav }}</h4>
                 {% if nav == 'Repositories' %}
-                <a href="{{ contents.Repositories.repos.url }}">Githubで見る <i class="fa fa-external-link" aria-hidden="true"></i></a>
+                <a href="{{ contents.Repositories.repos.url }}">GitHubで見る <i class="fa fa-external-link" aria-hidden="true"></i></a>
                 {% endif %}
             </div>
             {% with contents|lookup:nav as content %}
