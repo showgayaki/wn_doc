@@ -7,7 +7,12 @@
     {% for nav, url in global_nav.items %}
     {% if nav == active_page %}
     <div class="my-3 p-3 bg-white rounded box-shadow">
-        <h2 class="border-bottom border-gray pb-2 mb-0">{{ nav }}</h2>
+        <div class="border-bottom border-gray d-flex justify-content-between">
+            <h4 class="pb-2 mb-0">{{ nav }}</h4>
+            {% if nav == 'Repositories' %}
+            <a href="{{ contents.repos.url }}">Githubで見る <i class="fa fa-external-link" aria-hidden="true"></i></a>
+            {% endif %}
+        </div>
         {% for name, val in contents.items %}
         {% include 'contents.html' %}
         {% endfor %}

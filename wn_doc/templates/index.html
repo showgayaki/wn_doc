@@ -17,7 +17,12 @@
         {% for nav, url in global_nav.items %}
         {% if nav != 'Home' %}
         <div class="my-3 p-3 bg-white rounded box-shadow">
-            <h5 class="border-bottom border-gray pb-2 mb-0">{{ nav }}</h5>
+            <div class="border-bottom border-gray d-flex justify-content-between">
+                <h4 class="pb-2 mb-0">{{ nav }}</h4>
+                {% if nav == 'Repositories' %}
+                <a href="{{ contents.Repositories.repos.url }}">Githubで見る <i class="fa fa-external-link" aria-hidden="true"></i></a>
+                {% endif %}
+            </div>
             {% with contents|lookup:nav as content %}
             {% for name, val in content.items %}
                 {% if forloop.counter0 < 5 %}
@@ -26,7 +31,7 @@
             {% endfor %}
             {% endwith %}
             <p class="d-block text-right mt-3">
-                <a href="{{ url }}">More</a>
+                <a href="{{ url }}">More <i class="fa fa-external-link" aria-hidden="true"></i></a>
             </p>
         </div>
         {% endif %}
