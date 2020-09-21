@@ -22,6 +22,10 @@ def view_contents(page='index'):
             'Michopa or Yukipoyo': {
                 'url': 'https://my-recog.herokuapp.com/',
                 'description': 'みちょぱとゆきぽよ判別機'
+            },
+            '家計簿さん': {
+                'url': 'https://kakeibosan.herokuapp.com/login',
+                'description': '家計簿アプリデモ　Username：user1 または user2、Password：test'
             }
         },
         'Official': {
