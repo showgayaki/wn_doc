@@ -96,10 +96,35 @@ span.row-num span{
     text-align: right;
     color: #6c757d;
 }
+.markdown h1,
+.markdown h2,
+.markdown h3,
+.markdown h4,
+.markdown h5,
+.markdown h6{
+    padding-bottom: .3em;
+    border-bottom: 1px solid #eaecef;
+}
+.markdown pre, .markdown code{
+    border-radius: 6px;
+    color: #24292e;
+}
+.markdown pre{
+    padding: 16px;
+    background-color:#f6f8fa;
+}
+.markdown code{
+    padding: .2em .4em;
+    background-color: rgba(27,31,35,.05);
+}
+.markdown pre > code{
+    padding: 0;
+    background: transparent;
+}
 pre span{
     font-family: SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;
 }
- .gist-it-gist .gist-file div.gist-data, .gister-gist .gist-file div.gist-data {
+.gist-it-gist .gist-file div.gist-data, .gister-gist .gist-file div.gist-data {
     background-color: #fff;
 }
 .kwd, .kwd span{

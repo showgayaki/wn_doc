@@ -25,7 +25,7 @@ def view_contents(page='index'):
             },
             '家計簿さん': {
                 'url': 'https://kakeibosan.herokuapp.com/login',
-                'description': '家計簿アプリデモ　Username：user1 または user2、Password：test'
+                'description': '家計簿アプリデモ'
             }
         },
         'Repositories': {

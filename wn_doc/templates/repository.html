@@ -69,7 +69,7 @@
 
             const markUp = marked(shapeHtml(html, true));
             $('#code-area').append(markUp);
-            $('#code-area').addClass('px-3 border');
+            $('#code-area').addClass('markdown px-3 border');
         }
 
         // ファイルクリック時
@@ -82,7 +82,7 @@
             getWritten(codes[thisId]['code'], function(html){
                 if(thisId === 'README.md'){
                     html = marked(shapeHtml(html));
-                    $('#code-area').addClass('px-3 border');
+                    $('#code-area').addClass('markdown px-3 border');
                 }
                 $('#code-area').append(html);
             });
