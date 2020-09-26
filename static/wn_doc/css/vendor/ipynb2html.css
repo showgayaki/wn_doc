@@ -1,20 +1,27 @@
 @charset "UTF-8";
 
-*{
+.ipynb-cells *{
     margin: 0;
     padding: 0;
 }
-#ipynb-cells{
+.ipynb-cells{
     margin: 0.7rem;
     font-size: 14px;
 }
-#ipynb-cells p, #ipynb-cells pre{
+.ipynb-cells p, .ipynb-cells pre{
     margin: 0;
     padding: 0;
     font-size: 14px;
 }
 .input-markdown{
-    margin: 0.4rem 0.6rem 0.8rem;
+    margin: 0.4rem 0.6rem 0;
+}
+.input-markdown h2,
+.input-markdown h3,
+.input-markdown h4,
+.input-markdown h5,
+.input-markdown h6{
+    margin: 0.8rem 0 0.4rem;
 }
 .input-markdown ul{
     padding-inline-start: 1.5rem;
@@ -49,6 +56,7 @@
 }
 .input-row pre code{
     background: #f7f7f7;
+    font-family: SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;
 }
 .output-row{
     margin-top: 0.7rem;
@@ -60,9 +68,13 @@
 .output-code{
     padding-top: 0;
 }
+.output-code pre{
+    font-family: monospace;
+}
 .output-code table{
     margin-bottom: 1rem;
     border-collapse: collapse;
+    font-family: "";
 }
 .output-code table th, .output-code table td{
     width: 30px;
