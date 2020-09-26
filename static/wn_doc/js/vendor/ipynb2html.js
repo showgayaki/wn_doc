@@ -5,7 +5,6 @@ function ipynb2Html(ipynbData, targetId){
     shapedHtml = shapedHtml.replace(/&nbsp;/g, ' ');
 
     const ipynbDataJson = JSON.parse(shapedHtml);
-    console.log(ipynbDataJson);
     let cell = '';
     for(let i = 0; i < ipynbDataJson['cells'].length; i++){
         let input = '';
@@ -23,6 +22,7 @@ function ipynb2Html(ipynbData, targetId){
     }
     $(targetId).empty();
     $(targetId).append(cell);
+    $(targetId).addClass('ipynb-cells');
     // デフォルトスタイル削除
     $('.output-code div style').remove();
     $('.output-code div table').removeAttr('border class');
