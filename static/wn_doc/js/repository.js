@@ -32,7 +32,7 @@ $(function(){
                 const gistData = $('.gist-data').html();
                 ipynb2Html(gistData, '#code-area');
                 $(document).ready(function() {
-                    $('pre code').each(function(i, block) {
+                    $('pre code').each(function(i, block){
                         hljs.highlightBlock(block);
                     });
                 });
