@@ -37,14 +37,22 @@ $(function(){
                     const gistData = $('.gist-data').html();
                     ipynb2Html(gistData, '#code-area');
                 }else{
-                    html = '<pre><code class=\"' + langType + '\">' + shapeHtml(html, false) + '</code></pre>'
+                    const codeRows = shapeHtml(html, false).split('\n');
+                    let rows = '';
+                    for(let i = 0; i < codeRows.length; i++){
+                        rows += '<span class=\"row-num\">' + String(i + 1) + '</span>' + codeRows[i] + '\n';
+                    }
+                    html = '<pre><code class=\"' + langType + '\">' + rows + '</code></pre>'
                     $('#code-area').append(html);
                 }
-                $(document).ready(function() {
+                $(document).ready(function(){
                     $('pre code').each(function(i, block){
                         hljs.highlightBlock(block);
                     });
                 });
+
+                $('#code-area').addClass('m-0 border');
+                $('#code-area pre').addClass('p-0 py-2 pr-3 mb-0');
             }
         });
     });
@@ -55,10 +63,10 @@ function shapeHtml(html, isReadme){
     shapedHtml = html.replace(/<br>/g, '\n').replace(/<("[^"]*"|'[^']*'|[^'">])*>/g, '');
     // おしりに残ったprettyPrint();と、前後の空白削除
     shapedHtml = shapedHtml.replace(/\nprettyPrint\(\);/g, '').trim();
-    // コードエリアの空白コードを半角スペースに変更、空白コードを改行に変更
-    shapedHtml = shapedHtml.replace(/&nbsp; /g, '  ').replace(/&nbsp;/g, '<br>');
-    // ```HTML```用
     if(isReadme){
+        // コードエリアの空白コードを半角スペースに変更、空白コードを改行に変更
+        shapedHtml = shapedHtml.replace(/&nbsp; /g, '  ').replace(/&nbsp;/g, '<br>');
+        // ```HTML```用
         shapedHtml = shapedHtml.replace(/&lt;/g, '<').replace(/&gt;/g, '>');
     }
     return shapedHtml;
@@ -112,13 +120,16 @@ function languageType(extension){
             langType = 'javascript';
             break;
         case 'ejs':
-            langType = 'javascript';
+            langType = 'html';
             break;
         case 'css':
             langType = 'css';
             break;
         case 'sh':
             langType = 'bash';
+            break;
+        case 'bat':
+            langType = 'bat';
             break;
         case 'json':
             langType = 'json';
