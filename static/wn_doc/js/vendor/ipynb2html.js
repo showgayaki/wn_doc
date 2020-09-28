@@ -54,7 +54,6 @@ function shapeInputs(source, cellType, executionCount){
                 // ul終了タグ
                 if((i === source.length - 1) || (source[i + 1].split(' ')[0].indexOf('*') === -1)){
                     cell += '</ul>\n';
-                    console.log(cell);
                 }
             }else if(source[i] !== '\n'){
                 cell += '<p>' + source[i].replace(/&lt;/g, '<').replace(/&gt;/g, '>') +'</p>\n';
