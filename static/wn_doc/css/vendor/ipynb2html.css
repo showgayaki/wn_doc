@@ -70,6 +70,7 @@
 }
 .output-code pre{
     font-family: monospace;
+    background-color: #fff;
 }
 .output-code table{
     margin-bottom: 1rem;
