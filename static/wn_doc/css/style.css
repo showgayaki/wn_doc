@@ -61,15 +61,8 @@ header{
     background-color: #11303d;
 }
 /* Repository: code area */
-.code-area code{
-    padding: .2em .4em;
-    margin: 0;
-    color: #24292e;
-    background-color: rgba(27,31,35,.05);
-    border-radius: 6px;
-}
 .code-area pre{
-    padding: 16px;
+    padding: 3rem;
     overflow: auto;
     font-size: 85%;
     line-height: 1.45;
@@ -78,7 +71,6 @@ header{
 }
 .code-area pre code{
     display: inline;
-    max-width: auto;
     padding: 0;
     margin: 0;
     overflow: visible;
@@ -90,9 +82,10 @@ header{
 .code-area img{
     max-width: 100%;
 }
-span.row-num span{
+span.row-num, span.row-num span{
     display: inline-block;
-    width: 40px;
+    width: 3rem;
+    margin-right: 1rem;
     text-align: right;
     color: #6c757d;
 }
