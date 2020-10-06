@@ -13,6 +13,22 @@ header{
     background-size: cover;
     height: 300px;
 }
+/* Profile Modal */
+.profile li{
+    font-size: 0.8rem;
+}
+.badge-lang{
+    background-color: #da5b0b;
+}
+.badge-os{
+    background-color: #3572a5;
+}
+.badge-network{
+    background-color: #563d7c;
+}
+.badge-hardware{
+    background-color: #178600;
+}
 /* Repository: sidebar navigation */
 .dir-menu {
     background: #11303d;
@@ -39,12 +55,6 @@ header{
     text-decoration: none;
     color: #adb5bd;
     outline-width: 0;
-}
-.sidebar-nav .dir-menu ul a {
-    padding: 10px 15px 10px 30px;
-}
-.sidebar-nav .dir-menu ul ul a {
-    padding: 10px 15px 10px 45px;
 }
 .sidebar-nav .dir-menu a:hover,
 .sidebar-nav .dir-menu a:focus,
