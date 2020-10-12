@@ -11,7 +11,26 @@ nav{
 header{
     background: url("/static/wn_doc/img/header.jpg") center center no-repeat;
     background-size: cover;
-    height: 300px;
+    height: 400px;
+}
+h1 .btn{
+    background-color: rgba(17, 48, 61, 0.7);
+}
+/* Profile Modal */
+.profile li{
+    font-size: 0.8rem;
+}
+.badge-lang{
+    background-color: #da5b0b;
+}
+.badge-os{
+    background-color: #3572a5;
+}
+.badge-network{
+    background-color: #563d7c;
+}
+.badge-hardware{
+    background-color: #178600;
 }
 /* Repository: sidebar navigation */
 .dir-menu {
@@ -39,12 +58,6 @@ header{
     text-decoration: none;
     color: #adb5bd;
     outline-width: 0;
-}
-.sidebar-nav .dir-menu ul a {
-    padding: 10px 15px 10px 30px;
-}
-.sidebar-nav .dir-menu ul ul a {
-    padding: 10px 15px 10px 45px;
 }
 .sidebar-nav .dir-menu a:hover,
 .sidebar-nav .dir-menu a:focus,
