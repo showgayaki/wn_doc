@@ -9,11 +9,12 @@ nav{
     background-color: #11303d;
 }
 header{
-    background: url("/static/wn_doc/img/header.jpg") center center no-repeat;
+    background: url("/static/wn_doc/img/header.jpg") top center no-repeat;
     background-size: cover;
-    height: 400px;
+    min-height: 45vh;
 }
 h1 .btn{
+    width: 100px;
     background-color: rgba(17, 48, 61, 0.7);
 }
 /* Profile Modal */
