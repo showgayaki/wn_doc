@@ -102,6 +102,8 @@ function getWritten(fileName, callback) {
 
 
 function languageType(extension){
+    // サポート言語一覧
+    // https://github.com/highlightjs/highlight.js/blob/master/SUPPORTED_LANGUAGES.md
     let langType = '';
     switch(extension){
         case 'py':
@@ -136,6 +138,9 @@ function languageType(extension){
             break;
         case 'cs':
             langType = 'csharp';
+            break;
+        case 'ps1':
+            langType = 'powershell';
             break;
         case 'scss':
             langType = 'scss';
